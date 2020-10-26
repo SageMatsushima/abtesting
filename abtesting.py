@@ -117,22 +117,24 @@ def perform_2_sample_t_test(a, b):
 # [OPTIONAL] Some helper functions that might be helpful in get_expected_grid().
 def row_sum(observed_grid, ele_row):
     sum = 0
-    for numbers in range(len(observed_grid[0])):
-        sum += observed_grid[ele_row][numbers]
+    new = slice_2D(observed_grid, ele_row, ele_row+1, 0, len(observed_grid[0]))
+    for numbers in range(len(new[0])):
+        sum += new[0][numbers]
     return sum
 
 
 def col_sum(observed_grid, ele_col):
     sum = 0
-    for numbers in range(len(observed_grid)):
-        sum += observed_grid[numbers][ele_col]
+    new = slice_2D(observed_grid, 0, len(observed_grid), ele_col, ele_col+1)
+    for numbers in range(len(new[0])+1):
+        sum += new[numbers][0]
     return sum
 
 
 def total_sum(observed_grid):
     sum = 0
     for row in range(len(observed_grid)):
-        for col in range(len(observed_grid[0])):
+        for col in range(len(observed_grid[row])):
             sum += observed_grid[row][col]
     return sum
 
@@ -154,7 +156,7 @@ def get_expected_grid(observed_grid):
 
     for row in range(0, len(observed_grid)):
         x_row = []
-        for col in range(0, len(observed_grid[0])):
+        for col in range(0, len(observed_grid[row])):
             rsum = row_sum(observed_grid, row)
             csum = col_sum(observed_grid, col)
             exval = calculate_expected(rsum, csum, sum)
@@ -184,9 +186,8 @@ def chi2_value(observed_grid):
     chi2 = 0
     expected = get_expected_grid(observed_grid)
 
-    print(expected)
     for row in range(0, len(expected)):
-        for col in range(0, len(expected[0])):
+        for col in range(0, len(expected[row])):
             chi2 += ((observed_grid[row][col] -
                       expected[row][col])**2)/(expected[row][col])
     return chi2
@@ -244,7 +245,7 @@ print(perform_2_sample_t_test(a_t2_list, b_t2_list))  # this should be .082379
 # # this should be .0427939
 # print(perform_chi2_homogeneity_test(c1_observed_grid))
 
-# # chi2_test 2:
+# # # chi2_test 2:
 # a_c2_list = data_to_num_list(a_count_2)
 # b_c2_list = data_to_num_list(b_count_2)
 # c2_observed_grid = [a_c2_list, b_c2_list]
@@ -261,19 +262,16 @@ print(perform_2_sample_t_test(a_t2_list, b_t2_list))  # this should be .082379
 # print(perform_chi2_homogeneity_test(c3_observed_grid))
 
 
-# # chi2_test 3:
-# ca_list = data_to_num_list(a)
-# print(ca_list)
-# cb_list = data_to_num_list(b)
-# print(cb_list)
-# cog = [ca_list, cb_list]
-# print(chi2_value(cog))  # this should be .3119402
-# # this should be .57649202
-# print("Chi2 p value: " + perform_chi2_homogeneity_test(cog))
+# chi2_test 3:
+ca_list = data_to_num_list(ac)
+cb_list = data_to_num_list(bc)
+cog = [ca_list, cb_list]
+print(chi2_value(cog))  # 0.05099067599067608
+print(perform_chi2_homogeneity_test(cog))  # 0.8213483036962936
 
-# T TEST:
-ta_list = data_to_num_list(a)
-tb_list = data_to_num_list(b)
-print(get_t_score(ta_list, tb_list))  # this should be --0.643263379330903
-# this should be 0.2666168298376804
-print(perform_2_sample_t_test(ta_list, tb_list))
+# # T TEST:
+# ta_list = data_to_num_list(a)
+# tb_list = data_to_num_list(b)
+# print(get_t_score(ta_list, tb_list))  # this should be -0.643263379330903
+# # this should be 0.2666168298376804
+# print(perform_2_sample_t_test(ta_list, tb_list))
