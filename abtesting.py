@@ -217,51 +217,6 @@ def data_to_num_list(s):
     return list(map(float, s.split()))
 
 
-"""
-# t_test 1:
-a_t1_list = data_to_num_list(a1)
-b_t1_list = data_to_num_list(b1)
-print(get_t_score(a_t1_list, b_t1_list))  # this should be -129.500
-print(perform_2_sample_t_test(a_t1_list, b_t1_list))  # this should be 0.0000
-# # why do you think this is? Take a peek at a1 and b1 in abtesting_test.py :)
-# # t_test 2:
-a_t2_list = data_to_num_list(a2)
-b_t2_list = data_to_num_list(b2)
-print(get_t_score(a_t2_list, b_t2_list))  # this should be -1.48834
-print(perform_2_sample_t_test(a_t2_list, b_t2_list))  # this should be .082379
-"""
-# # # t_test 3:
-# a_t3_list = data_to_num_list(a3)
-# b_t3_list = data_to_num_list(b3)
-# print(get_t_score(a_t3_list, b_t3_list))  # this should be -2.88969
-# print(perform_2_sample_t_test(a_t3_list, b_t3_list))  # this should be .005091
-
-
-# # chi2_test 1:
-# a_c1_list = data_to_num_list(a_count_1)
-# b_c1_list = data_to_num_list(b_count_1)
-# c1_observed_grid = [a_c1_list, b_c1_list]
-# print(chi2_value(c1_observed_grid))  # this should be 4.103536
-# # this should be .0427939
-# print(perform_chi2_homogeneity_test(c1_observed_grid))
-
-# # # chi2_test 2:
-# a_c2_list = data_to_num_list(a_count_2)
-# b_c2_list = data_to_num_list(b_count_2)
-# c2_observed_grid = [a_c2_list, b_c2_list]
-# print(chi2_value(c2_observed_grid))  # this should be 33.86444
-# print(perform_chi2_homogeneity_test(c2_observed_grid))  # this should be 0.0000
-# # Again, why do you think this is? Take a peek at a_count_2 and b_count_2 in abtesting_test.py :)
-
-# # chi2_test 3:
-# a_c3_list = data_to_num_list(a_count_3)
-# b_c3_list = data_to_num_list(b_count_3)
-# c3_observed_grid = [a_c3_list, b_c3_list]
-# print(chi2_value(c3_observed_grid))  # this should be .3119402
-# # this should be .57649202
-# print(perform_chi2_homogeneity_test(c3_observed_grid))
-
-
 # chi2_test 3:
 ca_list = data_to_num_list(ac)
 cb_list = data_to_num_list(bc)
@@ -269,9 +224,9 @@ cog = [ca_list, cb_list]
 print(chi2_value(cog))  # 0.05099067599067608
 print(perform_chi2_homogeneity_test(cog))  # 0.8213483036962936
 
-# # T TEST:
-# ta_list = data_to_num_list(a)
-# tb_list = data_to_num_list(b)
-# print(get_t_score(ta_list, tb_list))  # this should be -0.643263379330903
-# # this should be 0.2666168298376804
-# print(perform_2_sample_t_test(ta_list, tb_list))
+# T TEST:
+ta_list = data_to_num_list(a)
+tb_list = data_to_num_list(b)
+print(get_t_score(ta_list, tb_list))  # this should be -0.643263379330903
+# this should be 0.2666168298376804
+print(perform_2_sample_t_test(ta_list, tb_list))

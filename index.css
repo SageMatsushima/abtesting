@@ -68,6 +68,16 @@ h4 {
 	padding-top: 5%;
 }
 
+.info {
+	display: block;
+	margin-left: 8%;
+}
+
+.graphic {
+	width: 65vw;
+	height: 90vw;
+}
+
 .ending {
 	padding-bottom: 15vh;
 }
